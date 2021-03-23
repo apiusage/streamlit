@@ -3,3 +3,16 @@ streamlit run 4dPredictionApp.py
 
 pip freeze > requirements.txt
 type requirements.txt
+
+install heroku cli
+heroku login
+heroku create fourDpredictapp
+
+git init
+git config --global user.email "apiusage8@gmail.com"
+git config --global user.name "apiusage"
+
+git add .
+git commit -m "First commit"
+
+
