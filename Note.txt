@@ -1,0 +1,5 @@
+cd C:\Users\bston\Desktop\4D Prediction App
+streamlit run 4dPredictionApp.py
+
+pip freeze > requirements.txt
+type requirements.txt
