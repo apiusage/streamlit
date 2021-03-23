@@ -12,11 +12,11 @@ st.image(image)
 st.text("Please upload your file in the sidebar")
 
 uploadFile = st.sidebar.file_uploader("Upload 4D excel file", type = [".xlsx"])
-userToPredict = st.sidebar.number_input("Digit Sum to predict")
+userToPredict = st.sidebar.number_input("4D Number to predict")
 startAnalysis = st.sidebar.button("Start analysis")
 
 if startAnalysis:
-    dataset = pd.read_excel(uploadFile, engine='openpyxl')
+    dataset = pd.read_excel(uploadFile, index_col=0, engine='openpyxl' )
     print(dataset.shape) # no of lines
 
     st.text("Here is the description of your dataset")
@@ -33,8 +33,8 @@ if startAnalysis:
 
     # ============== ML ==============
     # get data
-    x = dataset.loc[:, ["Digit Sum"]] 
-    y = dataset.loc[:, ["4D Number"]] #labels
+    x = dataset.loc[:, ["4D Number"]] 
+    y = dataset.loc[:, ["Prize Category"]] #labels
 
     # define model
     regressor = LinearRegression()
@@ -52,8 +52,8 @@ if startAnalysis:
     # get prediction
     prediction = regressor.predict(xPredict)
     
-    st.success("With Digit Sum " + str(xPredict[0][0]) 
-                +  " the 4D Number is: " + str(prediction[0][0]))
+    st.success("With 4D Number " + str(xPredict[0][0]) 
+                +  " the Prize Category is: " + str(prediction[0][0]))
 
     st.info("Here you can see your data (blue), model (red line) and prediction")
     
@@ -62,8 +62,8 @@ if startAnalysis:
     fix, ax = plt.subplots()
 
     # add lables to plots
-    ax.set_xlabel("Digit Sum")
-    ax.set_ylabel("4D Number")
+    ax.set_xlabel("4D Number")
+    ax.set_ylabel("Prize Category")
 
     # dataset
     ax.scatter(x, y)
